@@ -1,88 +1,28 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>House Price Prediction</title>
+    <!-- Linking CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>California House Price Prediction</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  <style>
-    body {
-      font-family: 'Arimo', sans-serif;
-      background: #f2f2f2;
-      text-align: center;
-      padding: 30px;
-    }
+  <body>
+    <h2>California House Price Prediction</h2>
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      color: #2c3e50;
-    }
+    <!-- Simple HTML form -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="MedInc" placeholder="Median Income" required><br>
+      <input type="text" name="HouseAge" placeholder="House Age" required><br>
+      <input type="text" name="AveRooms" placeholder="Average Rooms" required><br>
+      <input type="text" name="AveBedrms" placeholder="Average Bedrooms" required><br>
+      <input type="text" name="Population" placeholder="Population" required><br>
+      <input type="text" name="AveOccup" placeholder="Average Occupancy" required><br>
+      <input type="text" name="Latitude" placeholder="Latitude" required><br>
+      <input type="text" name="Longitude" placeholder="Longitude" required><br>
 
-    .login {
-      background: white;
-      display: inline-block;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    input {
-      width: 250px;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background: #2980b9;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #27ae60;
-      font-weight: bold;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="login">
-    <h1>California House Price Prediction</h1>
-
-    <!-- Input fields for California housing dataset -->
-    <form action="{{ url_for('predict')}}" method="post">
-      <input type="text" name="MedInc" placeholder="Median Income (in 10k USD)" required="required" /><br>
-      <input type="text" name="HouseAge" placeholder="House Age (years)" required="required" /><br>
-      <input type="text" name="AveRooms" placeholder="Average Rooms per Household" required="required" /><br>
-      <input type="text" name="AveBedrms" placeholder="Average Bedrooms per Household" required="required" /><br>
-      <input type="text" name="Population" placeholder="Population" required="required" /><br>
-      <input type="text" name="AveOccup" placeholder="Average Occupancy per Household" required="required" /><br>
-      <input type="text" name="Latitude" placeholder="Latitude" required="required" /><br>
-      <input type="text" name="Longitude" placeholder="Longitude" required="required" /><br>
-
-      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <button type="submit">Predict</button>
     </form>
 
-    <div class="result">
-      {{ prediction_text }}
-    </div>
-  </div>
-
-</body>
-
+    <h3>{{ prediction_text }}</h3>
+  </body>
 </html>

@@ -4,7 +4,8 @@ from flask import Flask, request, jsonify, render_template
 import numpy as np
 import pandas as pd
 import os  # 👈 for environment variables
-
+# request is used reads data from frontend or API.
+#jsonify is used to response as JSON format.
 app = Flask(__name__)
 
 # Load the model and scaler safely using context manager
@@ -18,7 +19,7 @@ with open('scaler.pkl', 'rb') as scaler_file:
 def home():
     return render_template('home.html')
 
-@app.route('/predict_api', methods=['POST'])
+@app.route('/predict_api', methods=['POST']) # Post method is used to send data to the API. from frontend to backend.
 def predict_api():
     data = request.json['data']
     print(data)
