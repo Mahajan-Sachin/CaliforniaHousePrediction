@@ -3,6 +3,7 @@ import pickle
 from flask import Flask, request, jsonify, render_template
 import numpy as np
 import pandas as pd
+import os  # 👈 for environment variables
 
 app = Flask(__name__)
 
@@ -40,4 +41,5 @@ def predict():
     )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))  # ✅ Railway sets PORT env variable
+    app.run(host="0.0.0.0", port=port)
